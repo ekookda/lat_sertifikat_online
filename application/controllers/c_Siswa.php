@@ -24,8 +24,9 @@ class c_Siswa extends CI_Controller
 
     public function praktikum()
     {
+        $nisn = $this->session->userdata('nisn');
         $where = array(
-            'nisn_siswa'=> 1234567890,
+            'nisn_siswa'=> $nisn,
             'mapel_id'  => 1,
             'type_test' => 'praktik'
         );

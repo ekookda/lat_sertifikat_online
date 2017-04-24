@@ -58,8 +58,20 @@ class Excel extends CI_Controller
                 'tgl_lahir' => date('Y-m-d', strtotime($rowData[0][5]))
             );
 
+            $nilai = array(
+                'nisn_siswa' => $rowData[0][1],
+                'mapel_id' => 1,
+                'type_test' => 'praktik',
+                'word' => $rowData[0][6],
+                'excel' => $rowData[0][7],
+                'powerpoint' => $rowData[0][8],
+                'access' => $rowData[0][9]
+            );
+
             //sesuaikan nama dengan nama tabel
-            $insert = $this->db->insert('siswa', $data);
+            $this->db->insert('siswa', $data);
+            $this->db->insert('nilai', $nilai);
+
             delete_files($this->upload->data('full_path'));
         }
 

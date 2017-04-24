@@ -37,39 +37,41 @@ class Auth extends CI_Controller
 
         $this->form_validation->set_rules($rules);
 
-        if ($this->form_validation->run() == false) {
+        if ( $this->form_validation->run() == false ) {
             // gagal validasi
             $this->load->view('login_form');
         } else {
             // lolos validasi, ambil value input
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            $akses    = $this->input->post('akses');
+            $akses = $this->input->post('akses');
 
-            $where = array('username' => $username);
+            $where = array( 'username' => $username );
 
-            if ($akses == 'admin') {
+            if ( $akses == 'admin' ) {
                 $data = $this->m_Admin->check_log_in('admin', $where);
             } else {
                 $data = $this->m_Admin->check_log_in('siswa', $where);
             }
 
-            if ($data->num_rows() > 0):
+            if ( $data->num_rows() > 0 ):
                 $get = $data->result_array();
 
-                foreach ($get as $v):
+                foreach ( $get as $v ):
                     $name = $v['nama_lengkap'];
                     $pass = $v['password'];
+                    $nisn = $v['nisn'];
                 endforeach;
 
                 $cek_password = password_verify($password, $pass);
 
-                if ($cek_password) {
+                if ( $cek_password ) {
                     // password cocok, buat session
                     $sess_data = array(
                         'nama_lengkap' => $name,
-                        'username'  => $username,
-                        'akses'     => $akses,
+                        'nisn' => $nisn,
+                        'username' => $username,
+                        'akses' => $akses,
                         'logged_in' => true
                     );
 

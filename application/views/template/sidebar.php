@@ -34,14 +34,21 @@
                         ?>
                         <ul class="treeview-menu">
                             <?php
+                            $admin = 'c_admin';
+                            $siswa = 'c_siswa';
+
                             if ($this->session->userdata('akses') == 'admin') {
                                 echo "<li>";
-                                echo anchor('c_Admin/data_siswa', '<i class="fa fa-file-o"></i> Data Siswa');
+                                echo anchor($admin.'/data_siswa', '<i class="fa fa-file-o"></i> Data Siswa');
                                 echo "</li>";
                             }
                             foreach ($sub_menu->result() as $sub) {
                                 echo "<li>";
-                                echo anchor('c_Siswa/' . $sub->link, '<i class="' . $sub->icon . '"></i> ' . ucwords($sub->nama_menu));
+                                if ($this->session->userdata('akses') == 'admin') {
+                                    echo anchor($admin.'/' . $sub->link, '<i class="' . $sub->icon . '"></i> ' . ucwords($sub->nama_menu));
+                                } else {
+                                    echo anchor($siswa.'/' . $sub->link, '<i class="' . $sub->icon . '"></i> ' . ucwords($sub->nama_menu));
+                                }
                                 echo "</li>";
                             }
                             ?>

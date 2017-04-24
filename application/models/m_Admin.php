@@ -13,9 +13,22 @@ class m_Admin extends CI_Model
         return $this->db->get($table);
     }
 
-    public function get_nilai_praktikum()
+    public function get_nilai_praktikum($select, $dbFrom, $dbJoin, $onJoin)
     {
-        return $this->db->get('nilai');
+        $this->db->select($select);
+        $this->db->from($dbFrom);
+        $this->db->join($dbJoin, $onJoin);
+        return $this->db->get();
+    }
+
+    public function get_all_data($select, $dbFrom, $dbJoin, $onJoin, $field, $where)
+    {
+        $this->db->select($select);
+        $this->db->from($dbFrom);
+        $this->db->join($dbJoin, $onJoin);
+        $this->db->where($field, $where);
+
+        return $this->db->get();
     }
 
 }
