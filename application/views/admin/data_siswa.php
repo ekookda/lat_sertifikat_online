@@ -54,12 +54,12 @@ $this->load->view('template/sidebar');
                             echo "<td class='text-center'>" . strtoupper($data->nisn) . "</td>";
                             echo "<td class='text-center'>" . strtoupper($data->username) . "</td>";
                             echo "<td>" . strtoupper($data->nama_lengkap) . "</td>";
-                            echo "<td class='text-center'>" . ucfirst($data->tempat_lahir) . ", " . date('d F Y', strtotime($data->tgl_lahir)) . "</td>";
+                            echo "<td class='text-center'>" . ucfirst(strtolower($data->tempat_lahir)) . ", " . date('d F Y', strtotime($data->tgl_lahir)) . "</td>";
                             echo "</tr>";
                         }
                     }
                     ?>
-                    </tbody>`
+                    </tbody>
                 </table>
             </div>
             <div class="box-body">

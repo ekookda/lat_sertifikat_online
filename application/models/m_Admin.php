@@ -8,8 +8,9 @@ class m_Admin extends CI_Model
         return $get;
     }
 
-    public function get_data_siswa($table)
+    public function get_data_siswa($table, $title, $sort)
     {
+        $this->db->order_by($title, $sort);
         return $this->db->get($table);
     }
 

@@ -73,8 +73,8 @@ $this->load->view('template/sidebar');
                 </table>
             </div>
             <div class="box-body text-right">
-                <a href="#">
-                    <button class="btn btn-dropbox"><i class="fa fa-print"></i> Cetak</button>
+                <a href="<?= site_url('sertifikat/certificate'); ?>">
+                    <button class="btn btn-dropbox btn-danger"><i class="fa fa-print"></i> Cetak</button>
                 </a>
             </div>
         </div>
