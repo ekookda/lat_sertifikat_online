@@ -39,7 +39,7 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="<?php echo site_url('c_Siswa/logout') ?>" class="btn btn-default btn-flat">Sign
+                                    <a href="<?php echo site_url('C_siswa/logout') ?>" class="btn btn-default btn-flat">Sign
                                         out</a>
                                 </div>
                             </li>

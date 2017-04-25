@@ -56,7 +56,7 @@ class Auth extends CI_Controller
 
             if ( $data->num_rows() > 0 ):
                 $get = $data->result_array();
-
+				
                 foreach ( $get as $v ):
                     $name = $v['nama_lengkap'];
                     $pass = $v['password'];

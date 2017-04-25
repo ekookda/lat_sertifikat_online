@@ -5,7 +5,7 @@ class c_Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_Admin');
+        $this->load->model('M_admin');
         $this->is_logged_in();
     }
 
@@ -27,13 +27,13 @@ class c_Admin extends CI_Controller
 
     public function data_siswa()
     {
-        $get_data ['data_siswa'] = $this->m_Admin->get_data_siswa('siswa', 'nama_lengkap', 'ASC');
+        $get_data ['data_siswa'] = $this->M_admin->get_data_siswa('siswa', 'nama_lengkap', 'ASC');
         $this->load->view('admin/data_siswa', $get_data);
     }
 
     public function praktikum()
     {
-        $query = $this->m_Admin->get_nilai_praktikum('*', 'nilai', 'siswa', 'nilai.nisn_siswa=siswa.nisn');
+        $query = $this->M_admin->get_nilai_praktikum('*', 'nilai', 'siswa', 'nilai.nisn_siswa=siswa.nisn');
 
         $data['data'] = $query;
         $this->load->view('admin/nilai-praktikum', $data);

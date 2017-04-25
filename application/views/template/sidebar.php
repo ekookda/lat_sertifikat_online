@@ -28,14 +28,14 @@
                     ?>
                     <li class="treeview">
                         <?php
-                        echo anchor('c_Siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu) . ' <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>');
+                        echo anchor('C_siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu) . ' <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>');
 
                         # Sub-menu disini
                         ?>
                         <ul class="treeview-menu">
                             <?php
-                            $admin = 'c_admin';
-                            $siswa = 'c_siswa';
+                            $admin = 'C_admin';
+                            $siswa = 'C_siswa';
 
                             if ($this->session->userdata('akses') == 'admin') {
                                 echo "<li>";
@@ -57,7 +57,7 @@
                     <?php
                 } else {
                     echo "<li>";
-                    echo anchor('c_Siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu));
+                    echo anchor('C_siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu));
                     echo "</li>";
                 }
             }

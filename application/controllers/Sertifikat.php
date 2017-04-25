@@ -10,6 +10,11 @@ class Sertifikat extends CI_Controller
 
     public function certificate()
     {
+		$this->load->model('M_admin');
+		$nisn = $this->session->userdata('nisn');
+        $query = $this->M_admin->get_all_data('*', 'nilai', 'siswa', 'nilai.nisn_siswa=siswa.nisn', 'nilai.nisn_siswa', $nisn);
+		$qry = $query->result();
+
         $pdf = new FPDF('L', 'mm', 'Letter');
         $pdf->AddPage();
 
@@ -33,7 +38,10 @@ class Sertifikat extends CI_Controller
         # subheading 'NOMOR'
         $pdf->Ln(10);
         $pdf->SetFont('', '', 14);
-        $pdf->Cell(0, 10, 'NOMOR : 2017/05/0018', '', '', 'C');
+        # Mengambil nomor absen untuk sertifikat
+		foreach ($qry as $v);
+		$nomor = substr($v->username, -4, 3);
+        $pdf->Cell(0, 10, 'NOMOR : ' . $nomor . '/101.2/SMK.P.WK/JU/IV/' . date('Y'), '', '', 'C');
 
         # text 'pernyataan'
         $pdf->Ln(10);
@@ -44,9 +52,6 @@ class Sertifikat extends CI_Controller
         # table
         $pdf->Ln(10);
         $pdf->SetLeftMargin(45);
-        $nisn = $this->session->userdata('nisn');
-        $this->load->model('m_Admin');
-        $query = $this->m_Admin->get_all_data('*', 'nilai', 'siswa', 'nilai.nisn_siswa=siswa.nisn', 'nilai.nisn_siswa', $nisn);
 
         if ( $query->num_rows() > 0 ) {
             foreach ( $query->result() as $v ) {
