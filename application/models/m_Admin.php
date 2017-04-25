@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class m_Admin extends CI_Model
+class M_admin extends CI_Model
 {
     public function check_log_in($table, $where)
     {
