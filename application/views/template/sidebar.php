@@ -18,46 +18,54 @@
         <ul class="sidebar-menu">
             <li class="header">MENU NAVIGATION</li>
             <?php
-            $main_menu = $this->db->get_where('menu', array('parent_id' => 0));
-            foreach ($main_menu->result() as $main) {
+            $main_menu = $this->db->get_where('menu', array( 'parent_id' => 0 ));
+            foreach ( $main_menu->result() as $main ) {
                 # Query untuk mencari sub-menu
-                $sub_menu = $this->db->get_where('menu', array('parent_id' => $main->id, 'tampilkan_menu'=>'tampil'));
+                $sub_menu = $this->db->get_where('menu', array( 'parent_id' => $main->id, 'tampilkan_menu' => 'tampil' ));
                 // periksa apakah ada sub-menu
-                if ($sub_menu->num_rows() > 0) {
+                if ( $sub_menu->num_rows() > 0 ) {
                     // main-menu dengan sub-menu
                     ?>
                     <li class="treeview">
                         <?php
-                        echo anchor('C_siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu) . ' <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>');
-
-                        # Sub-menu disini
-                        ?>
-                        <ul class="treeview-menu">
-                            <?php
-                            $admin = 'C_admin';
-                            $siswa = 'C_siswa';
-
-                            if ($this->session->userdata('akses') == 'admin') {
-                                echo "<li>";
-                                echo anchor($admin.'/data_siswa', '<i class="fa fa-file-o"></i> Data Siswa');
-                                echo "</li>";
-                            }
-                            foreach ($sub_menu->result() as $sub) {
-                                echo "<li>";
-                                if ($this->session->userdata('akses') == 'admin') {
-                                    echo anchor($admin.'/' . $sub->link, '<i class="' . $sub->icon . '"></i> ' . ucwords($sub->nama_menu));
-                                } else {
-                                    echo anchor($siswa.'/' . $sub->link, '<i class="' . $sub->icon . '"></i> ' . ucwords($sub->nama_menu));
-                                }
-                                echo "</li>";
-                            }
+                        if ( $this->session->userdata('akses') == 'sma' ) {
+                            echo anchor('SMA/pengumuman', '<i class="fa fa-bullhorn"></i> ' . ucwords("pengumuman"));
+                        } else {
+                            echo anchor('C_siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu) . ' <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>');
+                            # Sub-menu disini
                             ?>
-                        </ul>
+                            <ul class="treeview-menu">
+                                <?php
+                                $admin = 'C_admin';
+                                $siswa = 'C_siswa';
+
+                                if ( $this->session->userdata('akses') == 'admin' ) {
+                                    echo "<li>";
+                                    echo anchor($admin . '/data_siswa', '<i class="fa fa-file-o"></i> Data Siswa SMK');
+                                    echo anchor('SMA/datasiswa', '<i class="fa fa-file-o"></i> Data Siswa SMA');
+                                    echo "</li>";
+                                }
+
+                                foreach ( $sub_menu->result() as $sub ) {
+                                    echo "<li>";
+                                    if ( $this->session->userdata('akses') == 'admin' ) {
+                                        echo anchor($admin . '/' . $sub->link, '<i class="' . $sub->icon . '"></i> ' . ucwords($sub->nama_menu));
+                                    } else {
+                                        echo anchor($siswa . '/' . $sub->link, '<i class="' . $sub->icon . '"></i> ' . ucwords($sub->nama_menu));
+                                    }
+                                    echo "</li>";
+                                }
+                                ?>
+                            </ul>
+                        <?php } ?>
                     </li>
                     <?php
                 } else {
                     echo "<li>";
-                    echo anchor('C_siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu));
+                    if ($this->session->userdata('akses') != 'admin')
+                        echo anchor('C_siswa/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu));
+                    else
+                        echo anchor('C_admin/' . $main->link, '<i class="' . $main->icon . '"></i> ' . ucwords($main->nama_menu));
                     echo "</li>";
                 }
             }

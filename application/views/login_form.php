@@ -44,49 +44,49 @@ echo "<p style='color: #000;font-weight: 400;text-align: center;'><i>\"Belajarla
 
 // login-logo
 echo "<div class=\"login-box-body\" style='background-color: #fcfcfc;'>";
-echo heading('<i class="fa fa-user-circle-o"></i> Login', '1', array('class' => 'login-box-msg'));
+echo heading('<i class="fa fa-user-circle-o"></i> Login', '1', array( 'class' => 'login-box-msg' ));
 
 // form login
-echo form_open('auth/login', array('id' => 'formLogin', 'data-parsley-validate' => ''));
+echo form_open('auth/login', array( 'id' => 'formLogin', 'data-parsley-validate' => '' ));
 
-if ($this->session->flashdata('messageError')) {
+if ( $this->session->flashdata('messageError') ) {
     echo "<div class='alert alert-danger'>";
     echo '<i class="fa fa-info-circle"></i> ' . $this->session->flashdata('messageError');
     echo "</div>";
 }
 
 echo "<div class=\"form-group has-feedback\">";
-echo form_input('username', set_value('username'), array('id' => 'username', 'class' => 'form-control', 'placeholder' => 'username atau nisn', 'required' => ''));
+echo form_input('username', set_value('username'), array( 'id' => 'username', 'class' => 'form-control', 'placeholder' => 'username atau nisn', 'required' => '' ));
 echo "<span class=\"fa fa-user form-control-feedback\"></span>";
 echo "<span class='text-danger'>" . form_error('username') . "</span>";
 echo "</div>";
 
 echo "<div class=\"form-group has-feedback\">";
-echo form_password('password', '', array('id' => 'password', 'class' => 'form-control', 'placeholder' => 'password', 'required' => ''));
+echo form_password('password', '', array( 'id' => 'password', 'class' => 'form-control', 'placeholder' => 'password', 'required' => '' ));
 echo "<span class=\"fa fa-lock form-control-feedback\"></span>";
 echo "<span class='text-danger'>" . form_error('password') . "</span>";
 echo "</div>";
 
 echo "<div class=\"form-group has-feedback\">";
-$options = array(''=>'-- Login sebagai --', 'admin'=>'Administrator', 'siswa'=>'Siswa');
-echo form_dropdown('akses', $options, '', array('id' => 'akses', 'class' => 'form-control', 'required' => ''));
+$options = array( '' => '-- Login sebagai --', 'admin' => 'Administrator', 'siswa' => 'Siswa SMK', 'sma' => 'Siswa SMA' );
+echo form_dropdown('akses', $options, '', array( 'id' => 'akses', 'class' => 'form-control', 'required' => '' ));
 echo "<span class='text-danger'>" . form_error('login_as') . "</span>";
 echo "</div>";
 
 echo "<div class=\"row\">";
 echo "<div class=\"col-xs-8\">";
-echo anchor('#', 'Lupa Password');
+//echo "<p>Mau tau pengumuman kelululusan SMA ? " . anchor('Pengumuman/', '<span class="label label-danger">klik disini</span>', 'style="text-decoration:none"') . "</p>";
 echo "</div>"; // .col-xs-8
 
 // .col
 echo "<div class=\"col-offset-xs-8 col-xs-4\">";
-echo form_button(array('type' => 'submit', 'class' => 'btn btn-primary btn-block btn-flat', 'name' => 'btn-login', 'id' => 'btn-login', 'content' => '<i class="fa fa-sign-in"></i> Sign In'));
+echo form_button(array( 'type' => 'submit', 'class' => 'btn btn-primary btn-block btn-flat', 'name' => 'btn-login', 'id' => 'btn-login', 'content' => '<i class="fa fa-sign-in"></i> Sign In' ));
 echo "</div>"; // .col-xs-4
 echo "</div>"; // .row
 echo form_close();
 
 echo "</div>"; // .login-box-body
-echo heading('Copyright <i class="fa fa-copyright"></i> ' . Date("Y") . ' Made By <span>Eko Alfarisi</span>', 6, array('class' => 'text-center'));
+echo heading('Copyright <i class="fa fa-copyright"></i> ' . Date("Y") . ' Made By <span>Eko Alfarisi</span>', 6, array( 'class' => 'text-center' ));
 echo "</div>"; // .login-box
 ?>
 

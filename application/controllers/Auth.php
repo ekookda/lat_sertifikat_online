@@ -50,18 +50,20 @@ class Auth extends CI_Controller
 
             if ( $akses == 'admin' ) {
                 $data = $this->m_Admin->check_log_in('admin', $where);
-            } else {
+            } elseif ( $akses == 'siswa' ) {
                 $data = $this->m_Admin->check_log_in('siswa', $where);
+            } else {
+                $data = $this->m_Admin->check_log_in('sma', $where);
             }
 
             if ( $data->num_rows() > 0 ):
                 $get = $data->result_array();
-				
-                foreach ( $get as $v ):
+
+                foreach ( $get as $v ) {
                     $name = $v['nama_lengkap'];
                     $pass = $v['password'];
                     $nisn = $v['nisn'];
-                endforeach;
+                }
 
                 $cek_password = password_verify($password, $pass);
 
@@ -78,10 +80,11 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($sess_data);
 
                     if ( $akses == 'admin' ) {
-                        redirect('c_Admin/set_index');
+                        redirect('C_admin/set_index');
+                    } elseif ( $akses == 'siswa' ) {
+                        redirect('C_siswa/');
                     } else {
-
-                        redirect('c_Siswa/');
+                        redirect('SMA/beranda');
                     }
                 } else {
                     // password tidak cocok

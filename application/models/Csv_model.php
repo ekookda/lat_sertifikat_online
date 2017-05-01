@@ -17,9 +17,9 @@ class Csv_model extends CI_Model
         }
     }
 
-    function insert_csv($data)
+    function insert_csv($table, $data)
     {
-        $this->db->insert('siswa', $data);
+        $this->db->insert($table, $data);
     }
 
 }
