@@ -105,4 +105,17 @@ class C_admin extends CI_Controller
             redirect('SMA/datasiswa');
     }
 
+    public function drop()
+    {
+        $qry = $this->M_admin->delete_all('sma');
+
+        if ($qry == true)
+            redirect('SMA/datasiswa');
+    }
+
+    public function logout()
+    {
+        redirect('C_siswa/logout');
+    }
+
 }

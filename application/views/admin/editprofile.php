@@ -54,7 +54,7 @@ $this->load->view('template/sidebar');
                                     <div class="form-group">
                                         <?php
                                         echo form_label('Nomor Peserta Ujian', '', array( 'for' => 'username', 'class' => 'label-control' ));
-                                        echo form_input('input_username', $row->username, array( 'disabled'=>'disabled', 'class' => 'form-control', 'placeholder' => 'Nomor Peserta Ujian' ));
+                                        echo form_input('input_username', $row->username, array( 'disabled' => 'disabled', 'class' => 'form-control', 'placeholder' => 'Nomor Peserta Ujian' ));
                                         ?>
                                     </div>
                                     <div class="form-group">
@@ -79,30 +79,31 @@ $this->load->view('template/sidebar');
                                     <div class="form-group">
                                         <?php
                                         echo form_label('Mata Ujian Pilihan', '', array( 'for' => 'ujipilihan', 'class' => 'label-control' ));
-                                        $options = array( 'biologi' => 'Biologi', 'fisika' => 'Fisika', 'kimia' => 'Kimia', 'ekonomi' => 'Ekonomi', 'geografi' => 'Geografi', 'sosiologi' => 'Sosiologi' );
-                                        $ujian = $row->mata_uji_pilihan;
-                                        $select = '';
+                                        $option = array( 'biologi' => 'Biologi', 'fisika' => 'Fisika', 'kimia' => 'Kimia', 'ekonomi' => 'Ekonomi', 'geografi' => 'Geografi', 'sosiologi' => 'Sosiologi' );
+                                        $ujian = strtolower($row->mata_uji_pilihan);
+
                                         switch ($ujian):
-                                            case 'Biologi';
-                                                $select = 'biologi';
+                                            case 'biologi':
+                                                $selected = 'biologi';
                                                 break;
-                                            case 'Fisika';
-                                                $select = 'fisika';
+                                            case 'fisika':
+                                                $selected = 'fisika';
                                                 break;
-                                            case 'Kimia';
-                                                $select = 'kimia';
+                                            case 'kimia':
+                                                $selected = 'kimia';
                                                 break;
-                                            case 'Ekonomi';
-                                                $select = 'ekonomi';
+                                            case 'ekonomi':
+                                                $selected = 'ekonomi';
                                                 break;
-                                            case 'Geografi';
-                                                $select = 'geografi';
+                                            case 'geografi':
+                                                $selected = 'geografi';
                                                 break;
-                                            case 'Sosiologi';
-                                                $select = 'sosiologi';
+                                            case 'sosiologi':
+                                                $selected = 'sosiologi';
                                                 break;
                                         endswitch;
-                                        echo form_dropdown('select_ujian', $options, $select, array( 'class' => 'form-control' ));
+
+                                        echo form_dropdown('select_ujian', $option, $selected, array( 'class' => 'form-control' ));
                                         ?>
                                     </div>
                                     <div class="form-group">
@@ -126,14 +127,14 @@ $this->load->view('template/sidebar');
                                 </div>
                             </div><!-- /.col-md-6 -->
                         </div><!-- /.row -->
-                        <div class="box-footer text-right">
-                            <?php
-                            echo form_hidden('h_username', $row->username);
-                            echo form_button(array( 'name' => 'btn-update', 'class' => 'btn btn-primary', 'type' => 'submit', 'content' => '<span class="fa fa-edit"></span> Update' ));
-                            ?>
-                        </div>
+                    <?php endforeach; ?>
+                    <div class="box-footer text-right">
                         <?php
-                    endforeach;
+                        echo form_hidden('h_username', $row->username);
+                        echo form_button(array( 'name' => 'btn-update', 'class' => 'btn btn-primary', 'type' => 'submit', 'content' => '<span class="fa fa-edit"></span> Update' ));
+                        ?>
+                    </div>
+                    <?php
                     echo form_close();
                 } // num_rows()
             endif;

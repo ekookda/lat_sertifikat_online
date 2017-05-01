@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_admin extends CI_Model
+class m_Admin extends CI_Model
 {
     public function check_log_in($table, $where)
     {
@@ -8,10 +8,9 @@ class M_admin extends CI_Model
         return $get;
     }
 
-    public function get_data_siswa($table, $title1, $sort1 = 'ASC', $title2=NULL, $sort2=NULL)
+    public function get_data_siswa($table, $title, $sort)
     {
-        $this->db->order_by($title1, $sort1);
-        $this->db->order_by($title2, $sort2);
+        $this->db->order_by($title, $sort);
         return $this->db->get($table);
     }
 
@@ -32,28 +31,5 @@ class M_admin extends CI_Model
 
         return $this->db->get();
     }
-
-	public function get_edit_siswa($table, $username)
-	{
-		return $this->db->get_where($table, $username);
-	}
-
-    public function profileupdate($table, $data, $id=NULL)
-    {
-        return $this->db->update($table, $data, $id);
-	}
-
-    public function delete($table, $columnid, $valueid)
-    {
-        $this->db->where($columnid, $valueid);
-        $this->db->delete($table);
-
-        return true;
-	}
-
-    public function delete_all($table)
-    {
-        return $this->db->truncate($table);
-	}
 
 }

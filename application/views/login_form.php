@@ -55,8 +55,14 @@ if ( $this->session->flashdata('messageError') ) {
     echo "</div>";
 }
 
+if ( $this->session->flashdata('msg') ) {
+    echo "<div class='alert alert-danger'>";
+    echo '<i class="fa fa-info-circle"></i> ' . $this->session->flashdata('msg');
+    echo "</div>";
+}
+
 echo "<div class=\"form-group has-feedback\">";
-echo form_input('username', set_value('username'), array( 'id' => 'username', 'class' => 'form-control', 'placeholder' => 'username atau nisn', 'required' => '' ));
+echo form_input('username', set_value('username'), array( 'id' => 'username', 'class' => 'form-control', 'placeholder' => 'nomor peserta ujian', 'required' => '' ));
 echo "<span class=\"fa fa-user form-control-feedback\"></span>";
 echo "<span class='text-danger'>" . form_error('username') . "</span>";
 echo "</div>";

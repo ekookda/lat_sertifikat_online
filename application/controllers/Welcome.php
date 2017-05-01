@@ -6,4 +6,10 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('login_form');
 	}
+
+    public function waiting()
+    {
+        $this->load->view('waiting');
+	}
+	
 }
